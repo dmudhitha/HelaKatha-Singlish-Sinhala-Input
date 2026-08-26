@@ -1,0 +1,13 @@
+#!/bin/bash
+# prerm script for helakatha
+
+set -e
+
+# Terminate running HelaKatha python processes specifically (avoid matching dpkg/apt command strings)
+pkill -f "python3.*/opt/helakatha/main.py" || true
+pkill -f "python3.*/usr/share/helakatha/main.py" || true
+
+# Remove generated virtualenv
+rm -rf /opt/helakatha/.venv
+
+exit 0

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component>
+	<name>org.freedesktop.IBus.HelaKatha</name>
+	<description>HelaKatha Singlish to Sinhala Input Engine</description>
+	<version>1.0.1</version>
+	<license>GPL</license>
+	<author>Mudhitha Dharmarathna &lt;dmudhitha@gmail.com&gt;</author>
+	<homepage>https://github.com/dmudhitha/singlish-input-tool</homepage>
+	<exec>/usr/bin/helakatha-ibus</exec>
+	<textdomain>helakatha</textdomain>
+	<engines>
+		<engine>
+			<name>helakatha-singlish</name>
+			<language>si</language>
+			<license>GPL</license>
+			<author>Mudhitha Dharmarathna &lt;dmudhitha@gmail.com&gt;</author>
+			<icon>input-keyboard</icon>
+			<layout>us</layout>
+			<longname>Sinhala (HelaKatha Singlish)</longname>
+			<description>Phonetic Singlish to Sinhala Input Method</description>
+			<rank>99</rank>
+		</engine>
+	</engines>
+</component>

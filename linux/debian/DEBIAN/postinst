@@ -1,0 +1,48 @@
+#!/bin/bash
+# postinst script for helakatha
+
+set -e
+
+# Create virtual environment and install dependencies in /opt/helakatha/.venv
+echo "Creating Python virtual environment in /opt/helakatha/.venv..."
+python3 -m venv /opt/helakatha/.venv
+
+echo "Installing Python dependencies..."
+/opt/helakatha/.venv/bin/pip install --upgrade pip
+/opt/helakatha/.venv/bin/pip install PyQt6 pynput SpeechRecognition
+echo "Attempting to install PyAudio..."
+/opt/helakatha/.venv/bin/pip install pyaudio || echo "WARNING: PyAudio installation failed. Voice dictation might require manual installation of portaudio."
+
+# Set executable permissions
+chmod +x /usr/bin/helakatha
+chmod +x /usr/bin/helakatha-ibus
+chmod +x /opt/helakatha/run.sh
+
+# Update desktop database
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database /usr/share/applications || true
+fi
+
+# Update icon cache
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+    gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null || true
+fi
+
+# Refresh IBus components if IBus daemon is running
+if command -v ibus >/dev/null 2>&1; then
+    ibus restart 2>/dev/null || true
+fi
+
+echo "=========================================================================="
+echo " HelaKatha has been installed successfully!"
+echo ""
+echo " 🌟 Option A: Native IBus Input Method (Zero Clipboard — 100% Recommended):"
+echo "    1. Open GNOME / Desktop Settings -> Keyboard -> Input Sources."
+echo "    2. Click '+' (Add) -> Sinhala -> 'Sinhala (HelaKatha Singlish)'."
+echo "    3. Switch layouts using Super+Space. (Zero clipboard used!)"
+echo ""
+echo " 🌟 Option B: Standalone Desktop App (with Tray Icon & Floating Language Pill):"
+echo "    Launch 'HelaKatha' from your application menu or run 'helakatha' in terminal."
+echo "=========================================================================="
+
+exit 0

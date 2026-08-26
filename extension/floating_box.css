@@ -1,0 +1,102 @@
+/* HelaKatha Floating Suggestion Box Stylesheet */
+
+#helakatha-suggestion-box {
+  position: absolute;
+  z-index: 2147483647;
+  font-family: 'Noto Sans Sinhala', 'Iskoola Pota', system-ui, -apple-system, sans-serif;
+  background: rgba(18, 18, 26, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 6px;
+  min-width: 170px;
+  max-width: 280px;
+  color: #f3f4f6;
+  font-size: 14px;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+#helakatha-suggestion-box.helakatha-hidden {
+  display: none !important;
+}
+
+#helakatha-suggestion-box .helakatha-preview {
+  font-family: monospace;
+  font-size: 11px;
+  color: #a78bfa;
+  font-weight: bold;
+  text-align: center;
+  padding: 2px 4px 6px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+#helakatha-suggestion-box .helakatha-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 2px 0;
+  transition: background 0.12s ease;
+}
+
+#helakatha-suggestion-box .helakatha-row:hover {
+  background: rgba(124, 58, 237, 0.25);
+}
+
+#helakatha-suggestion-box .helakatha-row.helakatha-active {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+#helakatha-suggestion-box .helakatha-word {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#helakatha-suggestion-box .helakatha-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: #d1d5db;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+#helakatha-suggestion-box .helakatha-row.helakatha-active .helakatha-num {
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Light Theme Support */
+#helakatha-suggestion-box.helakatha-light {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  color: #1f2937;
+}
+
+#helakatha-suggestion-box.helakatha-light .helakatha-preview {
+  color: #7c3aed;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#helakatha-suggestion-box.helakatha-light .helakatha-row:hover {
+  background: rgba(124, 58, 237, 0.12);
+}
+
+#helakatha-suggestion-box.helakatha-light .helakatha-num {
+  background: rgba(0, 0, 0, 0.08);
+  color: #4b5563;
+}
