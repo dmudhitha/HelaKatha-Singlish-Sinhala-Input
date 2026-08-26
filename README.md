@@ -1,5 +1,9 @@
 # HelaKatha (Singlish to Sinhala Input Tool)
 
+<p align="center">
+  <img src="assets/banner.png" alt="HelaKatha Banner" width="100%">
+</p>
+
 A production-grade, multi-platform phonetic **Singlish to Sinhala Input Method Engine & WebExtension** designed for **Linux**, **Windows**, **Apple (macOS & iOS)**, and **Web Browsers (Chrome & Firefox)**.
 
 HelaKatha translates phonetic Singlish syllables (e.g. `amma` ➔ `අම්මා`) into accurate Sinhala Unicode and Legacy font codes, featuring N-gram sentence predictions, auto-learning dictionaries, spelling correction, dynamic text expansion macros, and emoji lookups with **zero clipboard pollution**.
@@ -145,6 +149,14 @@ When you clone or download this repository on a new machine, the ignored files c
 * **Migrating Existing History:** If you wish to migrate your personal typing history and custom macros, copy your config folder:
   * **Linux:** `~/.gemini/antigravity-cli/`
   * **Windows:** `%USERPROFILE%\.gemini\antigravity-cli\`
+
+---
+
+## 📸 Screenshots & Previews
+
+| Real-Time Web Typing | Extension Popup & Settings | Dual Unicode & FM Abhaya Support |
+| :---: | :---: | :---: |
+| <img src="extension/screenshots/screenshot1_typing.png" width="100%"> | <img src="extension/screenshots/screenshot2_popup.png" width="100%"> | <img src="extension/screenshots/screenshot3_fm_abhaya.png" width="100%"> |
 
 ---
 
