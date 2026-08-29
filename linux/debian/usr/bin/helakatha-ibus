@@ -1,0 +1,4 @@
+#!/bin/bash
+# HelaKatha - Native IBus Input Method Executable
+export PYTHONPATH="/opt/helakatha:$PYTHONPATH"
+exec python3 /opt/helakatha/ibus_engine.py "$@"

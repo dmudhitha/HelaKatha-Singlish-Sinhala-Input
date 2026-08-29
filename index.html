@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HelaKatha - Professional Singlish to Sinhala Input Tool for Linux and Windows. Type in Singlish, get beautiful Sinhala script instantly.">
-    <meta name="theme-color" content="#6366f1">
+    <meta name="description" content="HelaKatha - Professional Singlish to Sinhala Input Tool for Linux, Windows, macOS, iOS, Chrome, and Firefox. Type in Singlish, get beautiful Sinhala script instantly.">
+    <meta name="theme-color" content="#7c3aed">
     <title>HelaKatha - Singlish to Sinhala Input Tool</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>හ</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="extension/icons/icon48.png">
     <style>
         :root {
-            --bg: #0f0f12;
-            --bg-elevated: #18181d;
-            --bg-card: #1e1e26;
-            --border: #2d2d3a;
-            --fg: #f4f4f5;
-            --fg-muted: #a1a1aa;
-            --fg-subtle: #71717a;
-            --accent: #6366f1;
-            --accent-glow: #818cf8;
-            --accent-soft: rgba(99, 102, 241, 0.15);
-            --success: #22c55e;
+            --bg: #0f111a;
+            --bg-elevated: #161824;
+            --bg-card: #1c1f2e;
+            --border: #2c3044;
+            --fg: #f3f4f6;
+            --fg-muted: #9ca3af;
+            --fg-subtle: #6b7280;
+            --accent: #7c3aed;
+            --accent-glow: #a78bfa;
+            --accent-soft: rgba(124, 58, 237, 0.15);
+            --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
             --radius-sm: 8px;
@@ -31,25 +31,25 @@
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
             --shadow-lg: 0 20px 40px rgba(0,0,0,0.5);
-            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+            --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.3);
             --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         html[data-theme="light"] {
-            --bg: #fafafa;
+            --bg: #f8fafc;
             --bg-elevated: #ffffff;
-            --bg-card: #f4f4f5;
-            --border: #e4e4e7;
-            --fg: #18181b;
-            --fg-muted: #52525b;
-            --fg-subtle: #71717a;
-            --accent: #4f46e5;
-            --accent-glow: #6366f1;
-            --accent-soft: rgba(79, 70, 229, 0.12);
+            --bg-card: #f1f5f9;
+            --border: #e2e8f0;
+            --fg: #0f172a;
+            --fg-muted: #475569;
+            --fg-subtle: #64748b;
+            --accent: #6d28d9;
+            --accent-glow: #7c3aed;
+            --accent-soft: rgba(109, 40, 217, 0.12);
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
             --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
-            --shadow-glow: 0 0 40px rgba(79, 70, 229, 0.25);
+            --shadow-glow: 0 0 40px rgba(109, 40, 217, 0.2);
         }
 
         * {
@@ -62,39 +62,22 @@
             scroll-behavior: smooth;
         }
 
-        html[data-theme] {
-            color-scheme: normal;
-        }
-
-        html[data-theme="light"] {
-            color-scheme: light;
-        }
-
-        html[data-theme="dark"] {
-            color-scheme: dark;
-        }
-
-        *,
-        *::before,
-        *::after {
-            transition: background-color var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
-        }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg);
             color: var(--fg);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
         }
 
-        /* Background Effects */
+        /* Background Gradient Effects */
         .bg-gradient {
             position: fixed;
             inset: 0;
             background:
                 radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-soft) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
                 var(--bg);
             z-index: -1;
             pointer-events: none;
@@ -104,8 +87,8 @@
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             z-index: -1;
             pointer-events: none;
@@ -119,9 +102,14 @@
             right: 0;
             z-index: 100;
             padding: 1rem 2rem;
-            background: rgba(var(--bg-elevated), 0.8);
+            background: rgba(22, 24, 36, 0.85);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
+        }
+
+        html[data-theme="light"] nav {
+            background: rgba(255, 255, 255, 0.85);
         }
 
         .nav-container {
@@ -138,8 +126,8 @@
             gap: 0.75rem;
             text-decoration: none;
             color: var(--fg);
-            font-weight: 700;
-            font-size: 1.25rem;
+            font-weight: 800;
+            font-size: 1.35rem;
         }
 
         .logo-icon {
@@ -150,7 +138,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
+            color: #ffffff;
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
         }
 
         .nav-links {
@@ -164,28 +156,13 @@
             color: var(--fg-muted);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color var(--transition);
             position: relative;
         }
 
         .nav-links a:hover {
             color: var(--fg);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         .btn {
@@ -196,7 +173,7 @@
             padding: 0.75rem 1.5rem;
             border-radius: var(--radius-md);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-decoration: none;
             border: none;
             cursor: pointer;
@@ -224,56 +201,16 @@
         .btn-secondary:hover {
             background: var(--bg-elevated);
             border-color: var(--accent);
-        }
-
-        .btn-github {
-            background: var(--bg-card);
-            color: var(--fg);
-            border: 1px solid var(--border);
-        }
-
-        .btn-github:hover {
-            background: var(--bg-elevated);
-            border-color: var(--fg-muted);
-        }
-
-        /* Theme Toggle Button */
-        #theme-toggle {
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            border-radius: var(--radius-md);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition);
-        }
-
-        #theme-toggle:hover {
-            background: var(--bg-elevated);
-            border-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        #theme-toggle:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        #theme-toggle svg {
-            width: 20px;
-            height: 20px;
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 92vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 2rem 4rem;
+            padding: 7rem 2rem 4rem;
             position: relative;
         }
 
@@ -287,15 +224,14 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.25rem;
             background: var(--accent-soft);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--accent-glow);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.6s ease-out;
+            margin-bottom: 1.75rem;
         }
 
         .hero-badge::before {
@@ -304,36 +240,30 @@
             height: 8px;
             background: var(--success);
             border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.9); }
+            box-shadow: 0 0 8px var(--success);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 0.6s ease-out 0.1s both;
+            letter-spacing: -0.02em;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent), var(--accent-glow), var(--success));
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #10b981 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
             color: var(--fg-muted);
-            max-width: 700px;
+            max-width: 760px;
             margin: 0 auto 2.5rem;
             line-height: 1.7;
-            animation: fadeInUp 0.6s ease-out 0.2s both;
         }
 
         .hero-actions {
@@ -341,275 +271,136 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.6s ease-out 0.3s both;
+            margin-bottom: 3.5rem;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Demo Preview */
-        .demo-preview {
-            margin-top: 4rem;
-            animation: fadeInUp 0.6s ease-out 0.4s both;
-        }
-
-        .demo-container {
+        /* Interactive Web Playground */
+        .playground-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             box-shadow: var(--shadow-lg);
+            text-align: left;
+            position: relative;
         }
 
-        .demo-header {
+        .playground-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border);
         }
 
-        .demo-dots {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .demo-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .demo-dot:nth-child(1) { background: #ff5f57; }
-        .demo-dot:nth-child(2) { background: #ffbd2e; }
-        .demo-dot:nth-child(3) { background: #28ca42; }
-
-        .demo-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--fg-subtle);
-        }
-
-        .demo-content {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            line-height: 2;
-        }
-
-        .demo-line {
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .demo-prompt {
-            color: var(--success);
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .demo-input {
-            color: var(--accent-glow);
-            font-weight: 500;
-        }
-
-        .demo-arrow {
-            color: var(--fg-subtle);
-        }
-
-        .demo-output {
-            color: var(--fg);
-            font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
-            font-weight: 500;
-        }
-
-        .demo-candidates {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-            padding-left: 2.5rem;
-        }
-
-        .demo-candidate {
-            padding: 0.25rem 0.75rem;
-            background: var(--accent-soft);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
-            font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
-            animation: slideIn 0.3s ease-out backwards;
-        }
-
-        .demo-candidate:nth-child(1) { animation-delay: 0.1s; }
-        .demo-candidate:nth-child(2) { animation-delay: 0.2s; }
-        .demo-candidate:nth-child(3) { animation-delay: 0.3s; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Demo UI Preview */
-        .demo-ui-preview {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .ui-window {
-            width: 100%;
-            max-width: 420px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease-out 0.5s both;
-        }
-
-        .ui-header {
+        .playground-title {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0.625rem 0.875rem;
-            background: var(--bg-elevated);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .ui-title {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--fg-muted);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .ui-controls {
-            display: flex;
-            gap: 0.375rem;
-        }
-
-        .ui-btn {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-        }
-
-        .ui-close { background: #ff5f57; }
-        .ui-min { background: #ffbd2e; }
-        .ui-max { background: #28ca42; }
-
-        .ui-body {
-            padding: 1rem;
-        }
-
-        .ui-input-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .ui-label {
-            padding: 0.375rem 0.625rem;
-            background: var(--accent-soft);
-            color: var(--accent-glow);
-            border-radius: var(--radius-sm);
-            font-size: 0.7rem;
+            gap: 0.5rem;
             font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .ui-input {
-            flex: 1;
-            padding: 0.5rem 0.75rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
+            font-size: 1rem;
             color: var(--fg);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            outline: none;
         }
 
-        .ui-input:focus {
-            border-color: var(--accent);
-        }
-
-        .ui-candidates {
+        .playground-modes {
             display: flex;
-            flex-direction: column;
-            gap: 0.375rem;
+            gap: 0.5rem;
         }
 
-        .ui-candidate {
-            display: flex;
-            align-items: center;
-            gap: 0.625rem;
-            padding: 0.5rem 0.75rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
+        .mode-btn {
+            padding: 0.35rem 0.85rem;
             border-radius: var(--radius-sm);
-            font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: var(--fg);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--fg-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 500;
             transition: all var(--transition);
         }
 
-        .ui-candidate:hover,
-        .ui-candidate.active {
-            background: var(--accent-soft);
-            border-color: rgba(99, 102, 241, 0.5);
+        .mode-btn.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
         }
 
-        .ui-num {
-            min-width: 1.25rem;
-            text-align: center;
-            color: var(--accent-glow);
-            font-weight: 600;
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
+        .playground-input-box {
+            position: relative;
         }
 
-        .ui-footer {
+        .playground-textarea {
+            width: 100%;
+            height: 120px;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            color: var(--fg);
+            font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            outline: none;
+            resize: none;
+            transition: border-color var(--transition);
+        }
+
+        .playground-textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .interactive-candidates {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.7rem;
-            color: var(--fg-subtle);
-            font-family: 'Inter', sans-serif;
+            min-height: 38px;
         }
 
-        .ui-footer kbd {
-            padding: 0.125rem 0.375rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
+        .candidate-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            background: var(--accent-soft);
+            border: 1px solid rgba(124, 58, 237, 0.35);
             border-radius: var(--radius-sm);
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            font-size: 1rem;
+            color: var(--fg);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .candidate-tag:hover {
+            background: var(--accent);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .candidate-tag .cand-num {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
         }
 
-        .ui-sep {
-            opacity: 0.4;
+        .playground-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--fg-subtle);
         }
 
-        /* Features Section */
-        .features {
+        /* Platforms Section */
+        .platforms {
             padding: 6rem 2rem;
             background: var(--bg-elevated);
             border-top: 1px solid var(--border);
@@ -630,19 +421,93 @@
             display: inline-block;
             padding: 0.5rem 1rem;
             background: var(--accent-soft);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 100px;
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--accent-glow);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .section-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all var(--transition);
+        }
+
+        .platform-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .platform-top {
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-card h3 {
+            font-size: 1.35rem;
             font-weight: 700;
-            line-height: 1.2;
-            color: var(--fg);
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-desc {
+            color: var(--fg-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .platform-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--fg-muted);
+        }
+
+        .platform-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .platform-btn {
+            margin-top: 1.75rem;
+            width: 100%;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
         }
 
         .features-grid {
@@ -657,36 +522,17 @@
             border-radius: var(--radius-lg);
             padding: 2rem;
             transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--success));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--transition);
         }
 
         .feature-card:hover {
             border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
+            width: 52px;
+            height: 52px;
             background: var(--accent-soft);
             border-radius: var(--radius-md);
             display: flex;
@@ -697,163 +543,29 @@
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
             margin-bottom: 0.75rem;
-            color: var(--fg);
         }
 
         .feature-card p {
             color: var(--fg-muted);
-            line-height: 1.7;
             font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        /* Platforms Section */
-        .platforms {
-            padding: 6rem 2rem;
-        }
-
-        .platforms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .platform-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all var(--transition);
-        }
-
-        .platform-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .platform-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .platform-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .platform-card .platform-desc {
-            color: var(--fg-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .platform-features {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            text-align: left;
-        }
-
-        .platform-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-            color: var(--fg-muted);
-        }
-
-        .platform-feature svg {
-            color: var(--success);
-            flex-shrink: 0;
-        }
-
-        .platform-btn {
-            margin-top: 1.5rem;
-            width: 100%;
-        }
-
-        /* How it Works */
-        .how-it-works {
+        /* Shortcuts Section */
+        .shortcuts {
             padding: 6rem 2rem;
             background: var(--bg-elevated);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 40px;
-            right: -50%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--accent-soft);
-            border: 2px solid rgba(99, 102, 241, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-glow);
-            margin: 0 auto 1.5rem;
-        }
-
-        .step h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .step p {
-            color: var(--fg-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Shortcuts */
-        .shortcuts {
-            padding: 6rem 2rem;
-        }
-
         .shortcuts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
-            margin-top: 3rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .shortcut-card {
@@ -864,12 +576,8 @@
         }
 
         .shortcut-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 1.15rem;
+            margin-bottom: 1.25rem;
         }
 
         .shortcut-list {
@@ -886,16 +594,6 @@
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            transition: all var(--transition);
-        }
-
-        .shortcut-item:hover {
-            border-color: var(--accent);
-        }
-
-        .shortcut-keys {
-            display: flex;
-            gap: 0.5rem;
         }
 
         .key {
@@ -905,7 +603,7 @@
             border-radius: var(--radius-sm);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--fg);
         }
 
@@ -914,77 +612,9 @@
             color: var(--fg-muted);
         }
 
-        /* Testimonials / Stats */
-        .stats {
-            padding: 4rem 2rem;
-            background: var(--bg-elevated);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 1.5rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--accent-glow), var(--success));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--fg-muted);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .cta-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            color: var(--fg-muted);
-            margin-bottom: 2rem;
-        }
-
-        .cta-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
         /* Footer */
         footer {
-            padding: 3rem 2rem;
+            padding: 4rem 2rem 2rem;
             background: var(--bg-elevated);
             border-top: 1px solid var(--border);
         }
@@ -995,161 +625,56 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 3rem;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
         }
 
         .footer-brand p {
             color: var(--fg-muted);
             font-size: 0.95rem;
-            line-height: 1.7;
-            max-width: 300px;
+            margin-top: 1rem;
+            max-width: 320px;
         }
 
-        .footer-column h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--fg);
+        .footer-col h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
         }
 
-        .footer-column ul {
+        .footer-col ul {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
         }
 
-        .footer-column a {
+        .footer-col a {
             color: var(--fg-muted);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color var(--transition);
         }
 
-        .footer-column a:hover {
+        .footer-col a:hover {
             color: var(--accent-glow);
         }
 
         .footer-bottom {
             max-width: 1280px;
-            margin: 3rem auto 0;
+            margin: 0 auto;
             padding-top: 2rem;
             border-top: 1px solid var(--border);
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bottom p {
-            color: var(--fg-subtle);
-            font-size: 0.85rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--fg-muted);
-            transition: all var(--transition);
+            font-size: 0.85rem;
+            color: var(--fg-subtle);
         }
 
-        .footer-social a:hover {
-            border-color: var(--accent);
-            color: var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 5rem 1rem 3rem;
-            }
-
-            .demo-container {
-                padding: 1.5rem;
-            }
-
-            .demo-candidates {
-                padding-left: 0;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .features, .platforms, .how-it-works, .shortcuts, .cta {
-                padding: 4rem 1rem;
-            }
-
-            .features-grid, .platforms-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .step:not(:last-child)::after {
-                display: none;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .footer-brand p {
-                max-width: none;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .btn {
-                padding: 0.625rem 1.25rem;
-                font-size: 0.85rem;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-actions .btn {
-                width: 100%;
-                max-width: 280px;
-            }
-        }
-
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+            .nav-links { display: none; }
+            .footer-container { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
 </head>
@@ -1161,36 +686,17 @@
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
+                <div class="logo-icon">සි</div>
                 <span>HelaKatha</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
+                <li><a href="#playground">Try Online</a></li>
                 <li><a href="#platforms">Platforms</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
                 <li><a href="#shortcuts">Shortcuts</a></li>
-                <li><button id="theme-toggle" class="btn btn-secondary" aria-label="Toggle theme" title="Toggle light/dark mode">
-                    <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
-                        <circle cx="12" cy="12" r="5"/>
-                        <line x1="12" y1="1" x2="12" y2="3"/>
-                        <line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/>
-                        <line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                    </svg>
-                    <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                    </svg>
-                </button></li>
-                <li><a href="https://github.com/dmudhitha/HelaKatha" target="_blank" class="btn btn-github">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    GitHub
-                </a></li>
-                <li><a href="#download" class="btn btn-primary">Download</a></li>
+                <li><button id="theme-toggle" class="btn btn-secondary" title="Toggle Light/Dark Theme" style="padding: 0.5rem 0.85rem;">🌙</button></li>
+                <li><a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input" target="_blank" class="btn btn-secondary">GitHub</a></li>
+                <li><a href="#platforms" class="btn btn-primary">Get HelaKatha</a></li>
             </ul>
         </div>
     </nav>
@@ -1198,142 +704,62 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-container">
-            <div class="hero-badge">Version 1.0 • Production Ready</div>
-            <h1>Type in <span class="highlight">Singlish</span>, Get Beautiful <span class="highlight">Sinhala</span> Instantly</h1>
-            <p>HelaKatha is a professional desktop input method tool that captures phonetic Singlish keyboard input globally and converts it to Sinhala script in real-time. Works everywhere you type.</p>
+            <div class="hero-badge">HelaKatha v1.0.1 • Production Ready</div>
+            <h1>Type in <span class="highlight">Singlish</span>, Output <span class="highlight">Sinhala</span> Everywhere</h1>
+            <p>A multi-platform phonetic input tool and WebExtension for Linux, Windows, macOS, iOS, Chrome, and Firefox with smart auto-learning, sentence prediction, and zero clipboard pollution.</p>
             <div class="hero-actions">
-                <a href="#download" class="btn btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    Download for Linux / Windows
+                <a href="#platforms" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download App / Extension
                 </a>
-                <a href="https://github.com/dmudhitha/HelaKatha" target="_blank" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    View Source
+                <a href="#playground" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                    Try Live Playground
                 </a>
             </div>
 
-            <!-- Demo Preview -->
-            <div class="demo-preview">
-                <div class="demo-container">
-                    <div class="demo-header">
-                        <div class="demo-dots">
-                            <div class="demo-dot"></div>
-                            <div class="demo-dot"></div>
-                            <div class="demo-dot"></div>
-                        </div>
+                        <!-- Interactive Live Playground -->
+            <div class="playground-card" id="playground">
+                <div class="playground-header">
+                    <div class="playground-title">
+                        <span>⚡ Live Interactive Transliteration Demo</span>
                     </div>
-                    <div class="demo-content">
-                        <div class="demo-line">
-                            <span class="demo-prompt">Type:</span>
-                            <span class="demo-input">kohomada</span>
-                            <span class="demo-arrow">→</span>
-                            <span class="demo-output">කොහොමද</span>
-                        </div>
-                        <div class="demo-line">
-                            <span class="demo-prompt">Type:</span>
-                            <span class="demo-input">mage nama</span>
-                            <span class="demo-arrow">→</span>
-                            <span class="demo-output">මගේ නාම</span>
-                        </div>
-                        <div class="demo-line">
-                            <span class="demo-prompt">Type:</span>
-                            <span class="demo-input">sri lanka</span>
-                            <span class="demo-arrow">→</span>
-                            <span class="demo-output">ශ්‍රී ලංකා</span>
-                        </div>
-                    </div>
-                    <div class="demo-candidates">
-                        <span class="demo-candidate">1. ශ්‍රී ලංකා</span>
-                        <span class="demo-candidate">2. ශ්‍රීලංකා</span>
-                        <span class="demo-candidate">3. ශ්‍රී ලංකාව</span>
-                    </div>
-                    <div class="demo-ui-preview">
-                        <div class="ui-window">
-                            <div class="ui-header">
-                                <span class="ui-title">HelaKatha — Singlish Input</span>
-                                <div class="ui-controls">
-                                    <span class="ui-btn ui-close"></span>
-                                    <span class="ui-btn ui-min"></span>
-                                    <span class="ui-btn ui-max"></span>
-                                </div>
-                            </div>
-                            <div class="ui-body">
-                                <div class="ui-input-row">
-                                    <span class="ui-label">EN</span>
-                                    <input type="text" class="ui-input" placeholder="Type in Singlish..." value="kohomada" readonly>
-                                </div>
-                                <div class="ui-candidates">
-                                    <div class="ui-candidate active"><span class="ui-num">1</span> කොහොමද</div>
-                                    <div class="ui-candidate"><span class="ui-num">2</span> කොහොමඩ</div>
-                                    <div class="ui-candidate"><span class="ui-num">3</span> කොහොමදා</div>
-                                    <div class="ui-candidate"><span class="ui-num">4</span> කොහොමඩා</div>
-                                    <div class="ui-candidate"><span class="ui-num">5</span> කෝහොමද</div>
-                                </div>
-                                <div class="ui-footer">
-                                    <kbd>Space</kbd> Select <span class="ui-sep">|</span> <kbd>1-5</kbd> Pick <span class="ui-sep">|</span> <kbd>Esc</kbd> Close
-                                </div>
-                            </div>
-                        </div>
+                    <div class="playground-modes">
+                        <button class="mode-btn active" id="btn-mode-unicode">🌐 Sinhala Unicode</button>
+                        <button class="mode-btn" id="btn-mode-fm">🎨 FM Abhaya (Legacy ASCII)</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+                <div class="playground-input-box">
+                    <textarea class="playground-textarea" id="live-input" placeholder="Type in Singlish here (e.g. 'amma', 'kohomada', 'subha dawasak', 'sri lanka')..."></textarea>
+                    <div class="interactive-candidates" id="candidate-bar">
+                        <span class="candidate-tag"><span class="cand-num">1</span> අම්මා</span>
+                        <span class="candidate-tag"><span class="cand-num">2</span> අම්ම</span>
+                    </div>
+                </div>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-label">Core Features</span>
-                <h2>Everything You Need for Professional Sinhala Typing</h2>
-            </div>
-            <div class="features-grid">
-                <article class="feature-card">
-                    <div class="feature-icon">⌨️</div>
-                    <h3>Phonetic Singlish Input</h3>
-                    <p>Type naturally in Singlish (e.g., "kohomada", "mage nama") and watch it convert to accurate Sinhala script (කොහොමද, මගේ නාම) in real-time with intelligent syllable matching.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Smart Auto-Learning Dictionary</h3>
-                    <p>Your typing habits are learned automatically. Frequently used words bubble to the top of suggestions. Personal dictionary persists across sessions in <code>user_dict.json</code>.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">🔮</div>
-                    <h3>Sentence Prediction (N-Gram)</h3>
-                    <p>Context-aware next-word suggestions appear before you even type a character. Learns bigrams on-the-fly for intelligent sentence completion.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Text Macros with Variables</h3>
-                    <p>Create custom shortcuts like <code>hk = හෙළකත</code>. Supports dynamic variables: <code>[date]</code>, <code>[time]</code>, <code>[clip]</code> (clipboard content) for powerful expansions.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">🎙️</div>
-                    <h3>Bilingual Voice Typing</h3>
-                    <p>Speak in Sinhala or English — auto-switches recognition language based on active mode. Offline Vosk support for privacy. Smart punctuation: "කොමාව" → <code>,</code>, "තිත" → <code>.</code></p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">😊</div>
-                    <h3>Emoji Search & Insert</h3>
-                    <p>Type <code>:</code> to browse popular emojis, or search with queries like <code>:smi</code>, <code>:hea</code>, <code>:lk</code>. Insert directly from the candidate box — no mouse needed.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Spelling Auto-Correction</h3>
-                    <p>Intelligently corrects common phonetic typos like dental vs cerebral confusion (e.g., කරුනා → කරුණා). Works seamlessly within the candidate list.</p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Beautiful Light/Dark Themes</h3>
-                    <p>Instant theme switching with Catppuccin Latte (light) and Mocha (dark). Floating candidate windows feature smooth animations, drop shadows, and cursor tracking.</p>
-                </article>
+                <!-- Dual Output Real-time Cards -->
+                <div class="dual-output-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin-top:1.25rem;">
+                    <div class="output-box" style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-md); padding:1rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                            <strong style="font-size:0.85rem; color:var(--accent-glow);">🌐 Sinhala Unicode Result</strong>
+                            <button id="copy-uni-btn" class="mode-btn" style="font-size:0.75rem; padding:2px 8px;">📋 Copy</button>
+                        </div>
+                        <div id="uni-result" style="font-family:'Noto Sans Sinhala', sans-serif; font-size:1.15rem; min-height:48px; color:var(--fg); word-break:break-word;">අම්මා</div>
+                    </div>
+
+                    <div class="output-box" style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-md); padding:1rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                            <strong style="font-size:0.85rem; color:#38bdf8;">🎨 FM Abhaya (Photoshop/Word)</strong>
+                            <button id="copy-fm-btn" class="mode-btn" style="font-size:0.75rem; padding:2px 8px;">📋 Copy</button>
+                        </div>
+                        <div id="fm-result" style="font-family:monospace; font-size:1.15rem; min-height:48px; color:#38bdf8; word-break:break-word;">wïud</div>
+                    </div>
+                </div>
+
+                <div class="playground-footer" style="margin-top:1rem;">
+                    <span>💡 Press <strong>Space</strong> / <strong>Enter</strong> to commit word • Click candidate tags to pick</span>
+                    <span id="char-counter">0 words</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1342,192 +768,169 @@
     <section class="platforms" id="platforms">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">Cross-Platform</span>
-                <h2>Native Experience on Every Platform</h2>
+                <span class="section-label">Supported Platforms</span>
+                <h2>Native Experience Across All Devices</h2>
             </div>
             <div class="platforms-grid">
+                <!-- Linux -->
                 <article class="platform-card">
-                    <div class="platform-icon">🐧</div>
-                    <h3>Linux</h3>
-                    <p class="platform-desc">Full-featured overlay with global hotkeys</p>
-                    <div class="platform-features">
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Global hotkey capture</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>IBus native engine daemon</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Clipboard injection (Shift+Insert)</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Focus-stealing prevention (X11)</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>System tray integration</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Auto-start on login</div>
+                    <div class="platform-top">
+                        <div class="platform-icon">🐧</div>
+                        <h3>Linux</h3>
+                        <p class="platform-desc">Native IBus engine & standalone PyQt6 desktop app with Voice Typing.</p>
+                        <ul class="platform-features">
+                            <li>Native IBus OS keyboard engine</li>
+                            <li>Hardware scancode injection</li>
+                            <li>Zero clipboard interference</li>
+                            <li>Debian package & one-click run.sh</li>
+                        </ul>
                     </div>
-                    <a href="#download" class="btn btn-primary platform-btn">Linux Install Guide</a>
+                    <a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/releases" target="_blank" class="btn btn-primary platform-btn">Download .deb (Linux)</a>
                 </article>
+
+                <!-- Windows -->
                 <article class="platform-card">
-                    <div class="platform-icon">🪟</div>
-                    <h3>Windows</h3>
-                    <p class="platform-desc">Native port with standalone installer</p>
-                    <div class="platform-features">
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Global hotkeys (Ctrl+Space, Ctrl+Alt+S)</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Clipboard injection (Ctrl+V)</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>System tray with language indicator</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>One-click installer (<code>install.bat</code>)</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Standalone EXE builder</div>
-                        <div class="platform-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Windows startup integration</div>
+                    <div class="platform-top">
+                        <div class="platform-icon">🪟</div>
+                        <h3>Windows</h3>
+                        <p class="platform-desc">Direct Win32 SendInput Unicode injection with zero clipboard usage.</p>
+                        <ul class="platform-features">
+                            <li>Win32 KEYEVENTF_UNICODE</li>
+                            <li>Floating Catppuccin language bar</li>
+                            <li>Voice dictation & dynamic OSD</li>
+                            <li>Portable & setup installer</li>
+                        </ul>
                     </div>
-                    <a href="#download" class="btn btn-primary platform-btn">Windows Install Guide</a>
+                    <a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/releases" target="_blank" class="btn btn-primary platform-btn">Download for Windows</a>
+                </article>
+
+                <!-- WebExtension -->
+                <article class="platform-card">
+                    <div class="platform-top">
+                        <div class="platform-icon">🌐</div>
+                        <h3>Chrome & Firefox</h3>
+                        <p class="platform-desc">Manifest V3 browser extension for Google Docs, Gmail, WhatsApp & social media.</p>
+                        <ul class="platform-features">
+                            <li>Alt + Space instant toggle</li>
+                            <li>Inline caret-following popup</li>
+                            <li>FM Abhaya mode switcher</li>
+                            <li>100% offline & private</li>
+                        </ul>
+                    </div>
+                    <a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/tree/main/extension" target="_blank" class="btn btn-primary platform-btn">Get WebExtension</a>
+                </article>
+
+                <!-- Apple macOS & iOS -->
+                <article class="platform-card">
+                    <div class="platform-top">
+                        <div class="platform-icon">🍏</div>
+                        <h3>macOS & iOS</h3>
+                        <p class="platform-desc">InputMethodKit native controller & iOS custom keyboard extension.</p>
+                        <ul class="platform-features">
+                            <li>Inline pre-edit marked text</li>
+                            <li>Native IMKTextInput insertion</li>
+                            <li>Swift UIInputViewController</li>
+                            <li>Zero clipboard guarantee</li>
+                        </ul>
+                    </div>
+                    <a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/tree/main/apple" target="_blank" class="btn btn-secondary platform-btn">Apple Swift Build</a>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
+    <!-- Features Section -->
+    <section class="features" id="features">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-label">Quick Start</span>
-                <h2>Up and Running in Three Steps</h2>
+                <span class="section-label">Core Capabilities</span>
+                <h2>Engineered for Seamless Sinhala Input</h2>
             </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Install</h3>
-                    <p>Run <code>./install.sh</code> on Linux or <code>install.bat</code> on Windows. Sets up dependencies, virtual environment, and system integration automatically.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Launch</h3>
-                    <p>Start with <code>python3 main.py</code> (Linux) or double-click <code>run.bat</code> (Windows). The floating language bar appears — click <code>සි</code>/<code>EN</code> to toggle.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Type</h3>
-                    <p>Press <kbd>Ctrl+Space</kbd> to enable Singlish mode. Type phonetically: <code>kohomada</code> → <strong>කොහොමද</strong>. Press <kbd>Space</kbd> or <kbd>1-5</kbd> to select candidates.</p>
-                </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Phonetic Transliteration</h3>
+                    <p>Type naturally in Singlish (e.g., <code>amma</code>, <code>lanka</code>) and watch it convert to flawless Sinhala (අම්මා, ලංකා) in real-time with comprehensive phonetic rules.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Zero Clipboard Pollution</h3>
+                    <p>Never overwrites or interferes with your system clipboard. Employs direct OS scancodes, Win32 Unicode, and IMK protocols across all operating systems.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🔤</div>
+                    <h3>502 UCSC FM Abhaya Rules</h3>
+                    <p>Full support for visual-order FM Abhaya ASCII output for Adobe Photoshop, Illustrator, InDesign, and legacy publishing software.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Self-Learning N-Gram Engine</h3>
+                    <p>Adapts to your unique typing style. Learns words and sentence bigrams dynamically so your most frequent words always appear at #1.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Strict UI Auto-Hide</h3>
+                    <p>Candidate suggestion boxes strictly hide upon Space, Enter, or punctuation, keeping your screen clean until your next word begins.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Client-Side Privacy</h3>
+                    <p>Zero telemetry, zero external network requests. All transliteration logic executes entirely on your local machine.</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Shortcuts -->
+    <!-- Shortcuts Section -->
     <section class="shortcuts" id="shortcuts">
         <div class="section-container">
             <div class="section-header">
                 <span class="section-label">Keyboard Shortcuts</span>
-                <h2>Power User Shortcuts</h2>
+                <h2>Quick Reference & Controls</h2>
             </div>
             <div class="shortcuts-grid">
                 <article class="shortcut-card">
-                    <h3>🎯 Core Navigation</h3>
+                    <h3>🌐 Browser Extension</h3>
                     <div class="shortcut-list">
                         <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">Ctrl</span><span class="key">Space</span>
-                            </div>
-                            <span class="shortcut-desc">Toggle Singlish/English mode</span>
+                            <span class="shortcut-desc">Toggle Typing ON/OFF</span>
+                            <span class="key">Alt + Space</span>
                         </div>
                         <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">Space</span> / <span class="key">Enter</span>
-                            </div>
-                            <span class="shortcut-desc">Select candidate #1</span>
+                            <span class="shortcut-desc">Commit Word</span>
+                            <span class="key">Space / Enter</span>
                         </div>
                         <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">1</span>–<span class="key">5</span>
-                            </div>
-                            <span class="shortcut-desc">Select candidate 1–5</span>
+                            <span class="shortcut-desc">Select Candidate 1–5</span>
+                            <span class="key">1 – 5</span>
                         </div>
                         <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">Esc</span>
-                            </div>
-                            <span class="shortcut-desc">Dismiss candidate window</span>
+                            <span class="shortcut-desc">Punctuation Auto-Commit</span>
+                            <span class="key">. , ? ! ;</span>
                         </div>
                     </div>
                 </article>
                 <article class="shortcut-card">
-                    <h3>🎙️ Voice Typing</h3>
+                    <h3>🖥️ Desktop App (Linux & Windows)</h3>
                     <div class="shortcut-list">
                         <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">Ctrl</span><span class="key">Alt</span><span class="key">S</span>
-                            </div>
-                            <span class="shortcut-desc">Start/stop voice dictation</span>
+                            <span class="shortcut-desc">Toggle Singlish Mode</span>
+                            <span class="key">Ctrl + Space</span>
                         </div>
                         <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">Click</span> <span class="key">🎙️</span>
-                            </div>
-                            <span class="shortcut-desc">Toggle from language bar</span>
+                            <span class="shortcut-desc">Voice Dictation</span>
+                            <span class="key">Ctrl + Alt + V</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-desc">Select Candidate</span>
+                            <span class="key">1 – 5</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-desc">Dismiss Suggestion Box</span>
+                            <span class="key">Esc</span>
                         </div>
                     </div>
                 </article>
-                <article class="shortcut-card">
-                    <h3>⚙️ Settings & Macros</h3>
-                    <div class="shortcut-list">
-                        <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">Right-click</span> <span class="key">Tray</span>
-                            </div>
-                            <span class="shortcut-desc">Open Typing Guide / Settings</span>
-                        </div>
-                        <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">:</span> <span class="key">query</span>
-                            </div>
-                            <span class="shortcut-desc">Emoji search (e.g., <code>:smi</code>)</span>
-                        </div>
-                        <div class="shortcut-item">
-                            <div class="shortcut-keys">
-                                <span class="key">shortcut</span> <span class="key">Space</span>
-                            </div>
-                            <span class="shortcut-desc">Expand text macro</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">1.0</div>
-                <div class="stat-label">Major Version</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">8</div>
-                <div class="stat-label">Core Features</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2</div>
-                <div class="stat-label">Platforms</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Open Source</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta" id="download">
-        <div class="cta-container">
-            <h2>Ready to Type in Sinhala?</h2>
-            <p>Join thousands of users who've made HelaKatha their daily driver for Sinhala input. Free, open-source, and built for professionals.</p>
-            <div class="cta-actions">
-                <a href="https://github.com/dmudhitha/HelaKatha/releases" target="_blank" class="btn btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    Download Latest Release
-                </a>
-                <a href="https://github.com/dmudhitha/HelaKatha" target="_blank" class="btn btn-secondary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                    View on GitHub
-                </a>
             </div>
         </div>
     </section>
@@ -1537,101 +940,752 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <a href="#" class="logo">
+                    <div class="logo-icon">සි</div>
                     <span>HelaKatha</span>
                 </a>
-                <p>Professional Singlish to Sinhala input tool for Linux and Windows. Built with ❤️ for the Sinhala typing community.</p>
+                <p>Open-source Singlish to Sinhala input method and WebExtension built with ❤️ for the Sri Lankan community.</p>
             </div>
-            <div class="footer-column">
-                <h4>Product</h4>
+            <div class="footer-col">
+                <h4>Platforms</h4>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#platforms">Platforms</a></li>
-                    <li><a href="#download">Download</a></li>
-                    <li><a href="https://github.com/dmudhitha/HelaKatha/releases" target="_blank">Changelog</a></li>
+                    <li><a href="#platforms">Linux (IBus & Desktop)</a></li>
+                    <li><a href="#platforms">Windows</a></li>
+                    <li><a href="#platforms">macOS & iOS</a></li>
+                    <li><a href="#platforms">Chrome & Firefox</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h4>Resources</h4>
+            <div class="footer-col">
+                <h4>Features</h4>
                 <ul>
-                    <li><a href="https://github.com/dmudhitha/HelaKatha" target="_blank">GitHub Repository</a></li>
-                    <li><a href="https://github.com/dmudhitha/HelaKatha/issues" target="_blank">Report Issue</a></li>
-                    <li><a href="https://github.com/dmudhitha/HelaKatha/discussions" target="_blank">Discussions</a></li>
-                    <li><a href="https://github.com/dmudhitha/HelaKatha/blob/main/LICENSE" target="_blank">MIT License</a></li>
+                    <li><a href="#features">Zero Clipboard</a></li>
+                    <li><a href="#features">FM Abhaya Converter</a></li>
+                    <li><a href="#features">Smart N-Grams</a></li>
+                    <li><a href="#playground">Live Playground</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h4>Community</h4>
+            <div class="footer-col">
+                <h4>Open Source</h4>
                 <ul>
-                    <li><a href="#">Discord</a></li>
-                    <li><a href="#">Twitter/X</a></li>
-                    <li><a href="#">Reddit</a></li>
-                    <li><a href="mailto:mudhitha@example.com">Contact</a></li>
+                    <li><a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input" target="_blank">GitHub Repository</a></li>
+                    <li><a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/releases" target="_blank">Releases & Packages</a></li>
+                    <li><a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/issues" target="_blank">Report Issue</a></li>
+                    <li><a href="https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input/blob/main/LICENSE" target="_blank">MIT License</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
             <p>© <script>document.write(new Date().getFullYear())</script> HelaKatha. Open source under MIT License.</p>
-            <div class="footer-social">
-                <a href="https://github.com/dmudhitha/HelaKatha" target="_blank" aria-label="GitHub">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Twitter">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                    </svg>
-                </a>
-                <a href="#" aria-label="Discord">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.442.75-.686 1.124a18.93 18.93 0 0 0-5.337 0 12.84 12.84 0 0 0-.683-1.125.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.676 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.083.083 0 0 0 .031.057 19.9 19.9 0 0 0 5.992 4.744.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.007-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01 10.196 10.196 0 0 0 .371.292.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.645.773 1.257 1.225 1.993a.077.077 0 0 0 .083.028 19.839 19.839 0 0 0 6.002-4.726.077.077 0 0 0 .032-.054c.418-4.486-.422-9.027-3.546-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333 1.007-2.419 2.157-2.419 1.164 0 2.157 1.096 2.157 2.42 0 1.333-.994 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333 1.007-2.419 2.157-2.419 1.164 0 2.171 1.096 2.157 2.42 0 1.333-.993 2.418-2.157 2.418z"/>
-                    </svg>
-                </a>
-            </div>
+            <p>Made with passion for the Sinhala language.</p>
         </div>
     </footer>
 
+    
+    <!-- Embedded High-Performance Transliteration & FM Abhaya Engine -->
     <script>
+/**
+ * HelaKatha WebExtension Transliteration Core
+ * High-performance Singlish to Sinhala Transliteration Engine in JavaScript
+ */
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+const SINHALA_SPELLING_CORRECTIONS = {
+  "කරුනා": "කරුණා",
+  "කරුනාව": "කරුණාව",
+  "ප්‍රස්නය": "ප්‍රශ්නය",
+  "පිලිතුර": "පිළිතුර",
+  "පිලිතුරු": "පිළිතුරු",
+  "ස්තූති": "ස්තුතියි",
+  "බොහෝම": "බොහොම",
+  "විසේස": "විශේෂ",
+  "ප්‍රර්තනා": "ප්‍රාර්ථනා",
+  "ප්‍රර්ථනා": "ප්‍රාර්ථනා",
+  "උදව්": "උදවු"
+};
+
+const EMOJI_DICTIONARY = {
+  "smi": [
+    "😊",
+    "😄",
+    "😀",
+    "🙂"
+  ],
+  "hea": [
+    "❤️",
+    "💖",
+    "💙",
+    "💔"
+  ],
+  "lk": [
+    "🇱🇰",
+    " সিংহ",
+    "ලංකාව"
+  ],
+  "ok": [
+    "👍",
+    "👌",
+    "✅"
+  ],
+  "no": [
+    "❌",
+    "👎",
+    "🚫"
+  ],
+  "con": [
+    "🎉",
+    "🎊",
+    "🎈"
+  ],
+  "wav": [
+    "👋",
+    "✋",
+    "🤚"
+  ],
+  "laa": [
+    "😂",
+    "🤣",
+    "😆"
+  ],
+  "sad": [
+    "😢",
+    "😭",
+    "😞",
+    "😔"
+  ],
+  "fir": [
+    "🔥",
+    "💥",
+    "⚡"
+  ],
+  "cop": [
+    "💻",
+    "🖥️",
+    "⌨️"
+  ],
+  "pho": [
+    "📱",
+    "📞",
+    "☎️"
+  ]
+};
+
+const DEFAULT_DICTIONARY = {
+  "amma": [
+    "අම්මා",
+    "අම්ම",
+    "අම්මලා"
+  ],
+  "oyaa": [
+    "ඔයා",
+    "ඔයාලා",
+    "ඔයාට"
+  ],
+  "oya": [
+    "ඔයා",
+    "ඔයාලා",
+    "ඔයාට"
+  ],
+  "lanka": [
+    "ලංකා",
+    "ලංකාව",
+    "ලංකාවේ"
+  ],
+  "srilanka": [
+    "ශ්‍රී ලංකා",
+    "ශ්‍රී ලංකාව"
+  ],
+  "gama": [
+    "ගම",
+    "ගමක්",
+    "ගම්"
+  ],
+  "maga": [
+    "මග",
+    "මඟ",
+    "මඟක්"
+  ],
+  "sthuthi": [
+    "ස්තූතියි",
+    "ස්තූති"
+  ],
+  "isthuthi": [
+    "ස්තූතියි",
+    "ස්තූති"
+  ],
+  "subha": [
+    "සුබ",
+    "සුභ",
+    "සුබපැතුම්"
+  ],
+  "suwada": [
+    "සුවඳ",
+    "සුවඳක්"
+  ],
+  "karuna": [
+    "කරුණාකර",
+    "කරුණාව"
+  ],
+  "oba": [
+    "ඔබ",
+    "ඔබට",
+    "ඔබගේ",
+    "ඔබ සැමට"
+  ],
+  "mage": [
+    "මගේ",
+    "මගෙන්"
+  ],
+  "weda": [
+    "වැඩ",
+    "වැඩක්",
+    "වැඩ කරනවා"
+  ],
+  "honda": [
+    "හොඳ",
+    "හොඳයි",
+    "හොඳින්"
+  ],
+  "hoda": [
+    "හොඳ",
+    "හොඳයි",
+    "හොඳින්"
+  ],
+  "hodin": [
+    "හොඳින්",
+    "හොඳ"
+  ],
+  "hondin": [
+    "හොඳින්",
+    "හොඳ"
+  ],
+  "kohomada": [
+    "කොහොමද"
+  ],
+  "sathutu": [
+    "සතුටු",
+    "සතුටුයි"
+  ],
+  "subhapathum": [
+    "සුබ පැතුම්",
+    "සුභ පැතුම්"
+  ],
+  "sinhala": [
+    "සිංහල",
+    "සිංහලෙන්"
+  ],
+  "singlish": [
+    "සිංග්ලිෂ්",
+    "සිංග්ලිශ්"
+  ],
+  "dawas": [
+    "දවස",
+    "දවස්",
+    "දින"
+  ],
+  "yana": [
+    "යන",
+    "යන්න",
+    "යනවා"
+  ],
+  "karanna": [
+    "කරන්න",
+    "කරනවා",
+    "කරමු"
+  ],
+  "wenna": [
+    "වෙන්න",
+    "වෙනවා",
+    "වුණා"
+  ],
+  "epaa": [
+    "එපා"
+  ],
+  "epa": [
+    "එපා"
+  ],
+  "hari": [
+    "හරි",
+    "හරියට",
+    "හරිම"
+  ],
+  "eka": [
+    "එක",
+    "එකක්",
+    "එකඟයි"
+  ],
+  "mokada": [
+    "මොකද",
+    "මොකක්ද"
+  ],
+  "monada": [
+    "මොනවාද",
+    "මොනවා",
+    "මොකද"
+  ],
+  "naha": [
+    "නැහැ",
+    "නෑ"
+  ],
+  "na": [
+    "නෑ",
+    "නැහැ"
+  ],
+  "api": [
+    "අපි",
+    "අපිට",
+    "අපේ"
+  ],
+  "heki": [
+    "හැකි",
+    "හැකියාව"
+  ],
+  "hema": [
+    "හැම",
+    "හැමෝම",
+    "හැමදාම"
+  ],
+  "kala": [
+    "කාලය",
+    "කළා",
+    "කරලා"
+  ],
+  "puluwan": [
+    "පුළුවන්",
+    "පුළුවනි"
+  ]
+};
+
+const FM_ABHAYA_RULES = [[",", "￦"], ["\\.", "�"], ["\\(", "￫"], ["\\)", "￩"], ["%", "ￕ"], ["–", "ￔ"], ["\\?", "ￓ"], ["!", "ￒ"], ["\\=", "ￏ"], ["\\'", "ￎ"], ["\\+", "ￍ"], ["\\:", "ￌ"], ["\\÷", "ￋ"], ["\\;", "ﾶ"], ["ත්‍රෛ", "ff;%"], ["ශෛ", "ffY"], ["චෛ", "ffp"], ["ජෛ", "ffc"], ["කෛ", "ffl"], ["මෛ", "ffu"], ["පෛ", "ffm"], ["දෛ", "ffo"], ["තෛ", "ff;"], ["නෛ", "ffk"], ["ධෛ", "ffO"], ["වෛ", "ffj"], ["ප්‍රෞ", "fm%!"], ["ෂ්‍යෝ", "fIHda"], ["ඡ්‍යෝ", "fPHda"], ["ඪ්‍යෝ", "fVHda"], ["ඝ්‍යෝ", "f>Hda"], ["ඛ්‍යෝ", "fLHda"], ["ළ්‍යෝ", "f<Hda"], ["ඵ්‍යෝ", "fMHda"], ["ඨ්‍යෝ", "fGHda"], ["ශ්‍යෝ", "fYHda"], ["ක්‍ෂ්‍යෝ", "fÌHda"], ["බ්‍යෝ", "fnHda"], ["ච්‍යෝ", "fpHda"], ["ඩ්‍යෝ", "fâHda"], ["ෆ්‍යෝ", "f*Hda"], ["ග්‍යෝ", "f.Hda"], ["ජ්‍යෝ", "fcHda"], ["ක්‍යෝ", "flHda"], ["ල්‍යෝ", "f,Hda"], ["ම්‍යෝ", "fuHda"], ["න්‍යෝ", "fkHda"], ["ප්‍යෝ", "fmHda"], ["ද්‍යෝ", "foHda"], ["ස්‍යෝ", "fiHda"], ["ට්‍යෝ", "fgHda"], ["ව්‍යෝ", "fjHda"], ["ත්‍යෝ", "f;Hda"], ["භ්‍යෝ", "fNHda"], ["ධ්‍යෝ", "fOHda"], ["ථ්‍යෝ", "f:Hda"], ["ෂ්‍යො", "fIHd"], ["ශ්‍යො", "fYHd"], ["ඛ්‍යො", "fLHd"], ["ක්‍ෂ්‍යො", "fÌHd"], ["බ්‍යො", "fnHd"], ["ව්‍යො", "fjHd"], ["ඩ්‍යො", "fvHd"], ["ෆ්‍යො", "f*Hd"], ["ග්‍යො", "f.Hd"], ["ජ්‍යො", "fcHd"], ["ක්‍යො", "flHd"], ["ම්‍යො", "fuHd"], ["ප්‍යො", "fmHd"], ["ද්‍යො", "foHd"], ["ස්‍යො", "fiHd"], ["ට්‍යො", "fgHd"], ["ව්‍යො", "fjHd"], ["ත්‍යො", "f;Hd"], ["ඛ්‍යෙ", "fLH"], ["ක්‍ෂ්යෙ", "fÌH"], ["බ්‍යෙ", "fnH"], ["ඩ්‍යෙ", "fvH"], ["ෆ්‍යෙ", "f*H"], ["ග්‍යෙ", "f.H"], ["ජ්‍යෙ", "fcH"], ["ක්‍යෙ", "flH"], ["ම්‍යෙ", "fuH"], ["ප්‍යෙ", "fmH"], ["ද්‍යෙ", "foH"], ["ස්‍යෙ", "fiH"], ["ට්‍යෙ", "fgH"], ["ව්‍යෙ", "fjH"], ["ත්‍යෙ", "f;H"], ["භ්‍යෙ", "fNH"], ["ධ්‍යෙ", "fOH"], ["ථ්‍යෙ", "f:H"], ["ෂ්‍රෝ", "fI%da"], ["ඝ්‍රෝ", "f>%da"], ["ශ්‍රෝ", "fY%da"], ["ක්‍ෂ්‍රෝ", "fÌ%da"], ["බ්‍රෝ", "fn%da"], ["ඩ්‍රෝ", "fv%da"], ["ෆ්‍රෝ", "f*%da"], ["ග්‍රෝ", "f.%da"], ["ක්‍රෝ", "fl%da"], ["ප්‍රෝ", "fm%da"], ["ද්‍රෝ", "føda"], ["ස්‍රෝ", "fi%da"], ["ට්‍රෝ", "fg%da"], ["ත්‍රෝ", "f;%da"], ["ශ්‍රො", "fY%d"], ["ඩ්‍රො", "fv%d"], ["ෆ්‍රො", "f*%d"], ["ග්‍රො", "f.%d"], ["ක්‍රො", "fl%d"], ["ප්‍රො", "fm%d"], ["ද්‍රො", "fød"], ["ස්‍රො", "fi%d"], ["ට්‍රො", "fg%d"], ["ත්‍රො", "f;%d"], ["ශ්‍රේ", "fYa%"], ["බ්‍රේ", "fí%"], ["ඩ්‍රේ", "fâ%"], ["ෆ්‍රේ", "f*a%"], ["ග්‍රේ", "f.a%"], ["ක්‍රේ", "fla%"], ["ප්‍රේ", "fma%"], ["ද්‍රේ", "føa"], ["ස්‍රේ", "fia%"], ["ත්‍රේ", "f;a%"], ["ධ්‍රේ", "fè%"], ["ෂ්‍රෙ", "fI%"], ["ශ්‍රෙ", "fY%"], ["බ්‍රෙ", "fn%"], ["ෆ්‍රෙ", "f*%"], ["ග්‍රෙ", "f.%"], ["ක්‍රෙ", "fl%"], ["ප්‍රෙ", "fm%"], ["ද්‍රෙ", "fø"], ["ස්‍රෙ", "fi%"], ["ත්‍රෙ", "f;%"], ["භ්‍රෙ", "fN%"], ["ධ්‍රෙ", "fO%"], ["්‍ය", "H"], ["්‍ර", "%"], ["ෂෞ", "fI!"], ["ඡෞ", "fP!"], ["ශෞ", "fY!"], ["බෞ", "fn!"], ["චෞ", "fp!"], ["ඩෞ", "fv!"], ["ෆෞ", "f*!"], ["ගෞ", "f.!"], ["ජෞ", "fc!"], ["කෞ", "fl!"], ["ලෞ", "f,!"], ["මෞ", "fu!"], ["නෞ", "fk!"], ["පෞ", "fm!"], ["දෞ", "fo!"], ["රෞ", "fr!"], ["සෞ", "fi!"], ["ටෞ", "fg!"], ["තෞ", "f;!"], ["භෞ", "fN!"], ["ඤෞ", "f[!"], ["ෂෝ", "fIda"], ["ඹෝ", "fUda"], ["ඡෝ", "fPda"], ["ඪෝ", "fVda"], ["ඝෝ", "f>da"], ["ඛෝ", "fLda"], ["ළෝ", "f<da"], ["ඟෝ", "fÛda"], ["ණෝ", "fKda"], ["ඵෝ", "fMda"], ["ඨෝ", "fGda"], ["ඬෝ", "fËda"], ["ශෝ", "fYda"], ["ඥෝ", "f{da"], ["ඳෝ", "f|da"], ["ක්‍ෂෝ", "fÌda"], ["බෝ", "fnda"], ["චෝ", "fpda"], ["ඩෝ", "fvda"], ["ෆෝ", "f*da"], ["ගෝ", "f.da"], ["හෝ", "fyda"], ["ජෝ", "fcda"], ["කෝ", "flda"], ["ලෝ", "f,da"], ["මෝ", "fuda"], ["නෝ", "fkda"], ["පෝ", "fmda"], ["දෝ", "foda"], ["රෝ", "frda"], ["සෝ", "fida"], ["ටෝ", "fgda"], ["වෝ", "fjda"], ["තෝ", "f;da"], ["භෝ", "fNda"], ["යෝ", "fhda"], ["ඤෝ", "f[da"], ["ධෝ", "fOda"], ["ථෝ", "f:da"], ["ෂො", "fId"], ["ඹො", "fUd"], ["ඡො", "fPd"], ["ඪො", "fVd"], ["ඝො", "f>d"], ["ඛො", "fLd"], ["ළො", "f<d"], ["ඟො", "fÕd"], ["ණො", "fKd"], ["ඵො", "fMd"], ["ඨො", "fGd"], ["ඬො", "fËd"], ["ශො", "fYd"], ["ඥො", "f{d"], ["ඳො", "f|d"], ["ක්‍ෂො", "fÌd"], ["බො", "fnd"], ["චො", "fpd"], ["ඩො", "fvd"], ["ෆො", "f*d"], ["ගො", "f.d"], ["හො", "fyd"], ["ජො", "fcd"], ["කො", "fld"], ["ලො", "f,d"], ["මො", "fud"], ["නො", "fkd"], ["පො", "fmd"], ["දො", "fod"], ["රො", "frd"], ["සො", "fid"], ["ටො", "fgd"], ["වො", "fjd"], ["තො", "f;d"], ["භො", "fNd"], ["යො", "fhd"], ["ඤො", "f[d"], ["ධො", "fOd"], ["ථො", "f:d"], ["ෂේ", "fIa"], ["ඹේ", "fò"], ["ඡේ", "fþ"], ["ඪේ", "f\\\\a"], ["ඝේ", "f>a"], ["ඛේ", "fÄ"], ["ළේ", "f<a"], ["ඟේ", "fÛa"], ["ණේ", "fKa"], ["ඵේ", "fMa"], ["ඨේ", "fGa"], ["ඬේ", "få"], ["ශේ", "fYa"], ["ඥේ", "f{a"], ["ඳේ", "f|a"], ["ක්‍ෂේ", "fÌa"], ["බේ", "fí"], ["චේ", "fÉ"], ["ඩේ", "fâ"], ["ෆේ", "f*"], ["ගේ", "f.a"], ["හේ", "fya"], ["පේ", "fma"], ["කේ", "fla"], ["ලේ", "f,a"], ["මේ", "fï"], ["නේ", "fka"], ["ජේ", "f–"], ["දේ", "foa"], ["රේ", "f¾"], ["සේ", "fia"], ["ටේ", "fÜ"], ["වේ", "fõ"], ["තේ", "f;a"], ["භේ", "fNa"], ["යේ", "fha"], ["ඤේ", "f[a"], ["ධේ", "fè"], ["ථේ", "f:a"], ["ෂෙ", "fI"], ["ඹෙ", "fU"], ["ඓ", "ft"], ["ඡෙ", "fP"], ["ඪෙ", "fV"], ["ඝෙ", "f>"], ["ඛෙ", "fn"], ["ළෙ", "f<"], ["ඟෙ", "fÛ"], ["ණෙ", "fK"], ["ඵෙ", "fM"], ["ඨෙ", "fG"], ["ඬෙ", "fË"], ["ශෙ", "fY"], ["ඥෙ", "f{"], ["ඳෙ", "fË"], ["ක්‍ෂෙ", "fÌ"], ["බෙ", "fn"], ["චෙ", "fp"], ["ඩෙ", "fv"], ["ෆෙ", "f*"], ["ගෙ", "f."], ["හෙ", "fy"], ["ජෙ", "fc"], ["කෙ", "fl"], ["ලෙ", "f,"], ["මෙ", "fu"], ["නෙ", "fk"], ["පෙ", "fm"], ["දෙ", "fo"], ["රෙ", "fr"], ["සෙ", "fi"], ["ටෙ", "fg"], ["වෙ", "fj"], ["තෙ", "f;"], ["භෙ", "fN"], ["යෙ", "fh"], ["ඤෙ", "f["], ["ධෙ", "fO"], ["ථෙ", "f:"], ["තු", ";="], ["ගු", ".="], ["කු", "l="], ["තූ", ";+"], ["ගූ", ".+"], ["කූ", "l+"], ["රු", "re"], ["රූ", "rE"], ["ආ", "wd"], ["ඇ", "we"], ["ඈ", "wE"], ["ඌ", "W!"], ["ඖ", "T!"], ["ඒ", "ta"], ["ඕ", "´"], ["ඳි", "¢"], ["ඳී", "£"], ["දූ", "¥"], ["දී", "§"], ["ලූ", "¨"], ["ර්‍ය", "©"], ["ඳූ", "ª"], ["ර්", "¾"], ["ඨි", "À"], ["ඨී", "Á"], ["ඡී", "Â"], ["ඛ්", "Ä"], ["ඛි", "Å"], ["ලු", "Æ"], ["ඛී", "Ç"], ["දි", "È"], ["ච්", "É"], ["ජ්", "Ê"], ["රී", "Í"], ["ඪී", "Î"], ["ඪී", "Ð,"], ["චි", "Ñ"], ["ථී", "Ò"], ["ථී", "Ó"], ["ජී", "Ô"], ["චී", "Ö"], ["ඞ්", "Ù"], ["ඵී", "Ú"], ["ට්", "Ü"], ["ඵි", "Ý"], ["රි", "ß"], ["ටී", "à"], ["ටි", "á"], ["ඩ්", "â"], ["ඩී", "ã"], ["ඩි", "ä"], ["ඬ්", "å"], ["ඬි", "ç"], ["ධ්", "è"], ["ඬී", "é"], ["ධි", "ê"], ["ධී", "ë"], ["බි", "ì"], ["බ්", "í"], ["බී", "î"], ["ම්", "ï"], ["ජි", "ð"], ["මි", "ñ"], ["ඹ්", "ò"], ["මී", "ó"], ["ඹි", "ô"], ["ව්", "õ"], ["ඹී", "ö"], ["ඳු", "÷"], ["ද්‍ර", "ø"], ["වී", "ù"], ["වි", "ú"], ["ඞ්", "û"], ["ඞී", "ü"], ["ඡි", "ý"], ["ඡ්", "þ"], ["දු", "ÿ"], ["ජ්", "–"], ["ර්‍ණ", "“"], ["ණී", "”"], ["ජී", "„"], ["ඡි", "‰"], ["ඩි", ""], ["ඤු", "™"], ["ග", "."], ["ළු", "¿"], ["ෂ", "I"], ["ං", "x"], ["ඃ", "#"], ["ඹ", "U"], ["ඡ", "P"], ["ඪ", "V"], ["ඝ", ">"], ["ඊ", "B"], ["ඣ", "CO"], ["ඛ", "L"], ["ළ", "<"], ["ඟ", "Û"], ["ණ", "K"], ["ඵ", "M"], ["ඨ", "G"], ["ඃ", "#"], ["\\\"", ","], ["\\)", "&"], [":", "("], ["-", ")"], ["ෆ", "*"], ["ල", ","], ["-", "-"], ["රැ", "/"], ["ථ", ":"], ["ත", ";"], ["ළ", "<"], ["ඝ", ">"], ["රෑ", "?"], ["ඊ", "B"], ["ක‍", "C"], ["‍ෘ", "D"], ["ෑ", "E"], ["ත‍", "F"], ["ඨ", "G"], ["්‍ය", "H"], ["ෂ", "I"], ["න‍", "J"], ["ණ", "K"], ["ඛ", "L"], ["ඵ", "M"], ["භ", "N"], ["ධ", "O"], ["ඡ", "P"], ["ඍ", "R"], ["ඔ", "T"], ["ඹ", "U"], ["ඪ", "V"], ["උ", "W"], ["ශ", "Y"], ["ඤ", "["], ["ඉ", "b"], ["ජ", "c"], ["ට", "g"], ["ය", "h"], ["ස", "i"], ["ව", "j"], ["න", "k"], ["ක", "l"], ["ප", "m"], ["බ", "n"], ["ද", "o"], ["ච", "p"], ["ර", "r"], ["එ", "t"], ["ම", "u"], ["ඩ", "v"], ["අ", "w"], ["හ", "y"], ["ඥ", "{"], ["ඳ", "|"], ["ක්‍ෂ", "Ì"], ["ැ", "e"], ["ෑ", "E"], ["ෙ", "f"], ["ු", "q"], ["ි", "s"], ["ූ", "Q"], ["ී", "S"], ["ෘ", "D"], ["ෲ", "DD"], ["ෟ", "!"], ["ා", "d"], ["්", "a"], ["�", "'"], ["￫", "^"], ["￩", "&"], ["ￔ", ")"], ["ￓ", "@"], ["ￒ", "`"], ["ￏ", "}"], ["ￎ", "~"], ["\\ￍ", "¤"], ["\\ￌ", "•"], ["\\ￊ", "›"], ["\\ﾶ", "∙"], ["ￕ", "]"]];
+
+class TransliterationEngine {
+    constructor() {
+        this.vowels = [
+            ['oo', 'ඌ', 'ූ'],
+            ['o)', 'ඕ', 'ෝ'],
+            ['oe', 'ඕ', 'ෝ'],
+            ['aa', 'ආ', 'ා'],
+            ['a)', 'ආ', 'ා'],
+            ['Aa', 'ඈ', 'ෑ'],
+            ['A)', 'ඈ', 'ෑ'],
+            ['ae', 'ඈ', 'ෑ'],
+            ['ii', 'ඊ', 'ී'],
+            ['i)', 'ඊ', 'ී'],
+            ['ie', 'ඊ', 'ී'],
+            ['ee', 'ඊ', 'ී'],
+            ['ea', 'ඒ', 'ේ'],
+            ['e)', 'ඒ', 'ේ'],
+            ['ei', 'ඒ', 'ේ'],
+            ['uu', 'ඌ', 'ූ'],
+            ['u)', 'ඌ', 'ූ'],
+            ['au', 'ඖ', 'ෞ'],
+            ['/a', 'ඇ', 'ැ'],
+            ['/\\a', 'ඇ', 'ැ'],
+            ['a', 'අ', ''],
+            ['A', 'ඇ', 'ැ'],
+            ['i', 'ඉ', 'ි'],
+            ['e', 'එ', 'ෙ'],
+            ['u', 'උ', 'ු'],
+            ['o', 'ඔ', 'ො'],
+            ['I', 'ඓ', 'ෛ']
+        ];
+
+        this.special_consonants = [
+            ['x', 'ං'],
+            ['\\h', 'ඃ'],
+            ['\\N', 'ඞ'],
+            ['\\R', 'ඍ'],
+            ['R', 'ර්\u200D'],
+            ['\\r', 'ර්\u200D']
+        ];
+
+        this.consonants = [
+            ['zd', 'ඬ'],
+            ['zdh', 'ඳ'],
+            ['zg', 'ඟ'],
+            ['Th', 'ථ'],
+            ['Dh', 'ධ'],
+            ['gh', 'ඝ'],
+            ['Ch', 'ඡ'],
+            ['ph', 'ඵ'],
+            ['bh', 'භ'],
+            ['sh', 'ශ'],
+            ['Sh', 'ෂ'],
+            ['GN', 'ඥ'],
+            ['KN', 'ඤ'],
+            ['Lu', 'ළු'],
+            ['dh', 'ද'],
+            ['ch', 'ච'],
+            ['kh', 'ඛ'],
+            ['th', 'ත'],
+            ['t', 'ට'],
+            ['k', 'ක'],
+            ['d', 'ඩ'],
+            ['n', 'න'],
+            ['p', 'ප'],
+            ['b', 'බ'],
+            ['m', 'ම'],
+            ['\\y', '‍ය'],
+            ['Y', '‍ය'],
+            ['y', 'ය'],
+            ['j', 'ජ'],
+            ['l', 'ල'],
+            ['v', 'ව'],
+            ['w', 'ව'],
+            ['s', 'ස'],
+            ['h', 'හ'],
+            ['N', 'ණ'],
+            ['L', 'ළ'],
+            ['K', 'ඛ'],
+            ['G', 'ඝ'],
+            ['T', 'ඨ'],
+            ['D', 'ඪ'],
+            ['P', 'ඵ'],
+            ['B', 'ඹ'],
+            ['f', 'ෆ'],
+            ['q', 'ඣ'],
+            ['g', 'ග'],
+            ['r', 'ර']
+        ];
+
+        this.special_chars = [
+            ['ruu', 'ෲ'],
+            ['ru', 'ෘ']
+        ];
+
+        this.dictionary = Object.assign({}, DEFAULT_DICTIONARY);
+        this.user_dictionary = {};
+        this.bigram_dictionary = {};
+        this.macros = {
+            'brb': 'Be right back!',
+            'omw': 'On my way!',
+            'thx': 'ස්තූතියි!',
+            'hwru': 'කොහොමද ඔයාට?',
+            'gmg': 'සුබ උදෑසනක්!',
+            'gn8': 'සුබ රාත්‍රියක්!'
+        };
+
+        this.loadUserData();
+    }
+
+    loadUserData() {
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+            chrome.storage.local.get(['user_dict', 'bigram_dict', 'macros'], (res) => {
+                if (res.user_dict) this.user_dictionary = res.user_dict;
+                if (res.bigram_dict) this.bigram_dictionary = res.bigram_dict;
+                if (res.macros) this.macros = Object.assign(this.macros, res.macros);
+            });
+        }
+    }
+
+    saveUserData() {
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+            chrome.storage.local.set({
+                user_dict: this.user_dictionary,
+                bigram_dict: this.bigram_dictionary,
+                macros: this.macros
+            });
+        }
+    }
+
+    learn_word(typed_text, chosen_word) {
+        if (!typed_text || !chosen_word) return;
+        const clean = typed_text.trim().toLowerCase();
+        if (!this.user_dictionary[clean]) {
+            this.user_dictionary[clean] = {};
+        }
+        this.user_dictionary[clean][chosen_word] = (this.user_dictionary[clean][chosen_word] || 0) + 1;
+        this.saveUserData();
+    }
+
+    learn_bigram(prev_word, curr_word) {
+        if (!prev_word || !curr_word) return;
+        const p = prev_word.trim();
+        const c = curr_word.trim();
+        if (!this.bigram_dictionary[p]) {
+            this.bigram_dictionary[p] = {};
+        }
+        this.bigram_dictionary[p][c] = (this.bigram_dictionary[p][c] || 0) + 1;
+        this.saveUserData();
+    }
+
+    get_predictions(prev_word) {
+        if (!prev_word) return [];
+        const p = prev_word.trim();
+        const matches = this.bigram_dictionary[p] || {};
+        const sorted = Object.keys(matches).sort((a, b) => matches[b] - matches[a]);
+        return sorted.slice(0, 5);
+    }
+
+    transliterate(text) {
+        if (!text) return '';
+
+        let result = text;
+
+        // 1. Special characters
+        for (const [pattern, repl] of this.special_chars) {
+            const regex = new RegExp(escapeRegExp(pattern), 'g');
+            result = result.replace(regex, repl);
+        }
+
+        // 2. Special consonants
+        for (const [pattern, repl] of this.special_consonants) {
+            const regex = new RegExp(escapeRegExp(pattern), 'g');
+            result = result.replace(regex, repl);
+        }
+
+        // 3. Consonants + Vowels combination
+        for (const [con, con_uni] of this.consonants) {
+            for (const [vow, vow_uni, vow_mod] of this.vowels) {
+                const pattern = con + vow;
+                const repl = con_uni + vow_mod;
+                const regex = new RegExp(escapeRegExp(pattern), 'g');
+                result = result.replace(regex, repl);
+            }
+        }
+
+        // 4. Standalone Consonants -> Add hal/virama (්)
+        for (const [con, con_uni] of this.consonants) {
+            const regex = new RegExp(escapeRegExp(con), 'g');
+            result = result.replace(regex, con_uni + '්');
+        }
+
+        // 5. Standalone Vowels
+        for (const [vow, vow_uni, vow_mod] of this.vowels) {
+            const regex = new RegExp(escapeRegExp(vow), 'g');
+            result = result.replace(regex, vow_uni);
+        }
+
+        // 6. Spelling Corrections
+        for (const [wrong, right] of Object.entries(SINHALA_SPELLING_CORRECTIONS)) {
+            if (result.includes(wrong)) {
+                result = result.replace(new RegExp(escapeRegExp(wrong), 'g'), right);
+            }
+        }
+
+        return result;
+    }
+
+    get_candidates(text, clipboard_text = '') {
+        if (!text) return [];
+
+        const candidates = [];
+        const clean_text = text.trim().toLowerCase();
+
+        // Macro expansion
+        if (clean_text in this.macros) {
+            let expanded = this.macros[clean_text];
+            const now = new Date();
+            expanded = expanded.replace(/\[date\]/g, now.toISOString().slice(0, 10));
+            expanded = expanded.replace(/\[time\]/g, now.toTimeString().slice(0, 5));
+            if (clipboard_text) expanded = expanded.replace(/\[clip\]/g, clipboard_text);
+            candidates.push(expanded);
+        }
+
+        // Emoji lookup
+        if (clean_text in EMOJI_DICTIONARY) {
+            for (const emo of EMOJI_DICTIONARY[clean_text]) {
+                if (!candidates.includes(emo)) candidates.push(emo);
+            }
+        }
+
+        // Direct transliteration
+        const direct_trans = this.transliterate(text);
+        if (!candidates.includes(direct_trans)) {
+            candidates.push(direct_trans);
+        }
+
+        // User learned matches
+        const user_matches = this.user_dictionary[clean_text] || {};
+        const sorted_user = Object.keys(user_matches).sort((a, b) => user_matches[b] - user_matches[a]);
+        for (const m of sorted_user) {
+            if (!candidates.includes(m)) candidates.push(m);
+        }
+
+        // Default dictionary matches
+        const dict_matches = this.dictionary[clean_text] || [];
+        for (const m of dict_matches) {
+            if (!candidates.includes(m)) candidates.push(m);
+        }
+
+        // Prefix matches
+        if (candidates.length < 4) {
+            for (const [key, val] of Object.entries(this.dictionary)) {
+                if (candidates.length >= 4) break;
+                if (key.startsWith(clean_text) && key !== clean_text) {
+                    for (const m of val) {
+                        if (!candidates.includes(m) && candidates.length < 4) {
+                            candidates.push(m);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Raw text at index 4 if list is full
+        if (!candidates.includes(text)) {
+            if (candidates.length >= 5) {
+                candidates[4] = text;
+            } else {
+                candidates.push(text);
+            }
+        }
+
+        return candidates.slice(0, 5);
+    }
+}
+
+function unicode_to_fm_abhaya(text) {
+    if (!text) return '';
+    let result = text;
+    for (let i = 0; i < FM_ABHAYA_RULES.length; i++) {
+        const pattern = FM_ABHAYA_RULES[i][0];
+        const replacement = FM_ABHAYA_RULES[i][1];
+        try {
+            const regex = new RegExp(pattern, 'g');
+            result = result.replace(regex, replacement);
+        } catch (e) {
+            result = result.split(pattern).join(replacement);
+        }
+    }
+    return result;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { TransliterationEngine, unicode_to_fm_abhaya };
+}
+
+
         (function() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const sunIcon = document.getElementById('theme-icon-sun');
-            const moonIcon = document.getElementById('theme-icon-moon');
-            const html = document.documentElement;
+            // Theme Toggle
+            const themeBtn = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
 
-            function getPreferredTheme() {
-                const stored = localStorage.getItem('theme');
-                if (stored) return stored;
-                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-
-            function applyTheme(theme) {
-                html.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
-                if (theme === 'dark') {
-                    sunIcon.style.display = 'block';
-                    moonIcon.style.display = 'none';
-                } else {
-                    sunIcon.style.display = 'none';
-                    moonIcon.style.display = 'block';
-                }
-            }
-
-            // Initialize
-            applyTheme(getPreferredTheme());
-
-            // Toggle handler
-            themeToggle.addEventListener('click', function() {
-                const current = html.getAttribute('data-theme') || getPreferredTheme();
-                const next = current === 'dark' ? 'light' : 'dark';
-                applyTheme(next);
+            themeBtn.addEventListener('click', () => {
+                const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+                const next = isDark ? 'light' : 'dark';
+                htmlEl.setAttribute('data-theme', next);
+                themeBtn.textContent = isDark ? '☀️' : '🌙';
             });
 
-            // Listen for system theme changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-                if (!localStorage.getItem('theme')) {
-                    applyTheme(e.matches ? 'dark' : 'light');
+            // Live Playground Controller
+            const inputEl = document.getElementById('live-input');
+            const candBar = document.getElementById('candidate-bar');
+            const counterEl = document.getElementById('char-counter');
+            const uniResultEl = document.getElementById('uni-result');
+            const fmResultEl = document.getElementById('fm-result');
+            const btnUni = document.getElementById('btn-mode-unicode');
+            const btnFm = document.getElementById('btn-mode-fm');
+            const copyUniBtn = document.getElementById('copy-uni-btn');
+            const copyFmBtn = document.getElementById('copy-fm-btn');
+
+            let isFmMode = false;
+            const engine = new TransliterationEngine();
+
+            btnUni.addEventListener('click', () => {
+                isFmMode = false;
+                btnUni.classList.add('active');
+                btnFm.classList.remove('active');
+                updatePlayground();
+            });
+
+            btnFm.addEventListener('click', () => {
+                isFmMode = true;
+                btnFm.classList.add('active');
+                btnUni.classList.remove('active');
+                updatePlayground();
+            });
+
+            copyUniBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(uniResultEl.textContent || '');
+                copyUniBtn.textContent = '✓ Copied!';
+                setTimeout(() => copyUniBtn.textContent = '📋 Copy', 1500);
+            });
+
+            copyFmBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(fmResultEl.textContent || '');
+                copyFmBtn.textContent = '✓ Copied!';
+                setTimeout(() => copyFmBtn.textContent = '📋 Copy', 1500);
+            });
+
+            function transliterateFullText(text) {
+                if (!text) return { uni: '', fm: '' };
+                const words = text.split(/(\s+|[.,?!;]+)/);
+                let fullUni = '';
+                for (const part of words) {
+                    if (part.trim() && /[a-zA-Z]/.test(part)) {
+                        const cand = engine.get_candidates(part);
+                        fullUni += cand.length > 0 ? cand[0] : engine.transliterate(part);
+                    } else {
+                        fullUni += part;
+                    }
+                }
+                const fullFm = unicode_to_fm_abhaya(fullUni);
+                return { uni: fullUni, fm: fullFm };
+            }
+
+            function updatePlayground() {
+                const text = inputEl.value;
+                const words = text.trim() ? text.trim().split(/\s+/) : [];
+                counterEl.textContent = `${words.length} words (${text.length} chars)`;
+
+                const converted = transliterateFullText(text);
+                uniResultEl.textContent = converted.uni || '(Start typing in Singlish above...)';
+                fmResultEl.textContent = converted.fm || '(FM Abhaya ASCII will appear here...)';
+
+                if (!text) {
+                    candBar.innerHTML = '<span style="color:var(--fg-subtle); font-size:0.9rem;">Type Singlish above to see suggestions...</span>';
+                    return;
+                }
+
+                // Get last active word
+                const lastWord = words.length > 0 ? words[words.length - 1] : '';
+                const candidates = engine.get_candidates(lastWord);
+
+                candBar.innerHTML = '';
+                candidates.forEach((cand, idx) => {
+                    const fmCand = unicode_to_fm_abhaya(cand);
+                    const displayLabel = isFmMode ? `${cand} ➔ ${fmCand}` : cand;
+                    const commitVal = isFmMode ? fmCand : cand;
+
+                    const tag = document.createElement('span');
+                    tag.className = 'candidate-tag';
+                    tag.innerHTML = `<span class="cand-num">${idx + 1}</span> ${displayLabel}`;
+                    tag.addEventListener('click', () => {
+                        words[words.length - 1] = commitVal;
+                        inputEl.value = words.join(' ') + ' ';
+                        inputEl.focus();
+                        updatePlayground();
+                    });
+                    candBar.appendChild(tag);
+                });
+            }
+
+            inputEl.addEventListener('input', updatePlayground);
+            inputEl.addEventListener('keydown', (e) => {
+                if (e.key === ' ' || e.key === 'Enter') {
+                    const text = inputEl.value;
+                    const words = text.trim().split(/\s+/);
+                    if (words.length > 0) {
+                        const last = words[words.length - 1];
+                        if (/[a-zA-Z]/.test(last)) {
+                            const candidates = engine.get_candidates(last);
+                            if (candidates.length > 0) {
+                                const commitVal = isFmMode ? unicode_to_fm_abhaya(candidates[0]) : candidates[0];
+                                words[words.length - 1] = commitVal;
+                                inputEl.value = words.join(' ') + (e.key === ' ' ? ' ' : '\n');
+                                e.preventDefault();
+                                updatePlayground();
+                            }
+                        }
+                    }
                 }
             });
+
+            // Initialize with sample
+            inputEl.value = 'subha dhawasak weawaa';
+            updatePlayground();
         })();
     </script>
 </body>

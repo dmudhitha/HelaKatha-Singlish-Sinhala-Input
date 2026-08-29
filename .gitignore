@@ -40,10 +40,8 @@ dist/
 Output/
 *.spec
 
-# Linux packaging artifacts
+# Linux packaging generated artifacts
 linux/debian/opt/
-linux/debian/etc/
-linux/debian/usr/
 linux/debian/var/
 
 # Windows build binaries

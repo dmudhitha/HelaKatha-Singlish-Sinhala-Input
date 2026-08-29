@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: helakatha
 Upstream-Contact: Mudhitha Dharmarathna <dmudhitha@gmail.com>
-Source: https://github.com/dmudhitha/singlish-input-tool
+Source: https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input
 
 Files: *
 Copyright: 2024 Mudhitha Dharmarathna <dmudhitha@gmail.com>

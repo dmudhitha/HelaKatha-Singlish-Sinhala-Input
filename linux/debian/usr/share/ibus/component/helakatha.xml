@@ -5,7 +5,7 @@
 	<version>1.0.1</version>
 	<license>GPL</license>
 	<author>Mudhitha Dharmarathna &lt;dmudhitha@gmail.com&gt;</author>
-	<homepage>https://github.com/dmudhitha/HelaKatha-Singlish-Sinhala-Input</homepage>
+	<homepage>https://github.com/dmudhitha/singlish-input-tool</homepage>
 	<exec>/usr/bin/helakatha-ibus</exec>
 	<textdomain>helakatha</textdomain>
 	<engines>
@@ -17,7 +17,7 @@
 			<icon>input-keyboard</icon>
 			<layout>us</layout>
 			<longname>Sinhala (HelaKatha Singlish)</longname>
-			<description>Phonetic Singlish to Sinhala Input Method</description>
+			<description>Phonetic Singlish to Sinhala Native Input Method (Zero Clipboard)</description>
 			<rank>99</rank>
 		</engine>
 	</engines>

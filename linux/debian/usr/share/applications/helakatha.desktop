@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=HelaKatha
+GenericName=Singlish to Sinhala Input
+Comment=HelaKatha - Phonetic Singlish to Sinhala Input Tool
+Exec=/usr/bin/helakatha
+Icon=helakatha
+Terminal=false
+Categories=Utility;Accessibility;
+StartupNotify=true
