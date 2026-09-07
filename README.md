@@ -52,17 +52,20 @@ singlish-input-tool/
 │   │   └── Info.plist
 │   └── README.md
 │
-├── extension/                    # Chrome & Firefox WebExtension (Manifest V3)
-│   ├── manifest.json             # Cross-browser extension manifest (AMO validated)
+├── extension-chrome/             # Google Chrome / Brave / Edge / Opera Extension (Manifest V3)
+│   ├── manifest.json             # Manifest V3 with background service_worker
+│   ├── background.js             # Service worker & toolbar badge controller
 │   ├── engine.js                 # Complete JavaScript transliteration core & 502 UCSC rules
-│   ├── content.js                # Universal web page typing, caret hook & Alt+Space toggle
-│   ├── floating_box.css          # Modern floating suggestion UI (Dark & Light themes)
-│   ├── background.js             # Service worker & toolbar badge status
-│   ├── popup.html / popup.js     # Settings & mode switcher dashboard
-│   ├── icons/                    # App icons (16, 32, 48, 128px)
-│   ├── screenshots/              # High-resolution store screenshot mockups
-│   └── README.md
+│   ├── content.js                # Caret tracker, input hook & Alt+Space toggle
+│   ├── floating_box.css          # Floating candidate UI (Dark & Light)
+│   ├── popup.html / popup.js     # Settings popup
+│   └── icons/ / screenshots/
 │
+├── extension-firefox/            # Mozilla Firefox Extension (AMO Validated MV3)
+│   ├── manifest.json             # MV3 with browser_specific_settings.gecko
+│   └── ...
+│
+├── package_extensions.sh         # Automated build & zip packager (Chrome & Firefox)
 ├── build_web_engine.py           # Core Python-to-JavaScript engine compiler
 └── README.md                     # Root Project Guide
 ```
@@ -101,11 +104,16 @@ singlish-input-tool/
 
 ### 3. 🌐 Web Browsers (Chrome, Brave, Firefox, Edge)
 * **Google Chrome / Brave / Edge:**
-  1. Open `chrome://extensions` ➔ Turn on **Developer mode**.
-  2. Click **Load unpacked** ➔ Select the `extension/` folder.
+  1. Open `chrome://extensions` ➔ Turn on **Developer mode** (top-right).
+  2. Click **Load unpacked** ➔ Select the `extension-chrome/` folder.
 * **Mozilla Firefox:**
   1. Open `about:debugging#/runtime/this-firefox`.
-  2. Click **Load Temporary Add-on...** ➔ Select `extension/manifest.json`.
+  2. Click **Load Temporary Add-on...** ➔ Select `extension-firefox/manifest.json`.
+* **One-Click Store Packaging:**
+  ```bash
+  ./package_extensions.sh
+  ```
+  Produces `helakatha-chrome.zip` and `helakatha-firefox.zip`.
 
 #### Browser Keyboard Controls:
 | Key / Shortcut | Action |
@@ -142,7 +150,7 @@ When you clone or download this repository on a new machine, the ignored files c
 ### 2. 📦 Rebuilding Distribution Packages
 * **Linux (`.deb`):** Run `./linux/build_linux.sh` to compile `linux/helakatha_1.0.1-1_all.deb`.
 * **Windows (`.zip` / `.exe`):** Run `windows/build_installer.bat`.
-* **WebExtension (`.zip`):** Zip the `extension/` directory.
+* **WebExtension (`.zip`):** Run `./package_extensions.sh` to compile `helakatha-chrome.zip` and `helakatha-firefox.zip`.
 
 ### 3. ⚙️ User Settings & Personal Dictionaries
 * **Automatic Initialization:** Fresh default configuration files (`settings.json`, `user_dict.json`, `macros.json`, `bigram_dict.json`) are automatically created the first time you run HelaKatha.
@@ -156,7 +164,7 @@ When you clone or download this repository on a new machine, the ignored files c
 
 | Real-Time Web Typing | Extension Popup & Settings | Dual Unicode & FM Abhaya Support |
 | :---: | :---: | :---: |
-| <img src="extension/screenshots/screenshot1_typing.png" width="100%"> | <img src="extension/screenshots/screenshot2_popup.png" width="100%"> | <img src="extension/screenshots/screenshot3_fm_abhaya.png" width="100%"> |
+| <img src="extension-chrome/screenshots/screenshot1_typing.png" width="100%"> | <img src="extension-chrome/screenshots/screenshot2_popup.png" width="100%"> | <img src="extension-chrome/screenshots/screenshot3_fm_abhaya.png" width="100%"> |
 
 ---
 

@@ -340,9 +340,11 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 '''
 
-    with open('extension/engine.js', 'w', encoding='utf-8') as out:
-        out.write(js_template)
-    print('Generated extension/engine.js successfully')
+    targets = ['extension-chrome/engine.js', 'extension-firefox/engine.js']
+    for t in targets:
+        with open(t, 'w', encoding='utf-8') as out:
+            out.write(js_template)
+        print(f'Generated {t} successfully')
 
 if __name__ == '__main__':
     build_engine()

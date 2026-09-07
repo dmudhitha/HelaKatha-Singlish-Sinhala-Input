@@ -23,7 +23,10 @@ web-ext-artifacts/
 .web-extension-id/
 *.xpi
 *.crx
+*.pem
 helakatha-extension.zip
+helakatha-chrome.zip
+helakatha-firefox.zip
 helakatha-windows.zip
 
 # User-specific dynamic dictionaries & runtime configs
